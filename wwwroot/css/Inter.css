@@ -340,7 +340,3 @@
 .header-div-ul {
 	text-align: center;
 }
-
-.navbar-custom {
-	--bs-navbar-padding-y: 0 !important;
-}

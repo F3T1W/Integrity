@@ -5,91 +5,86 @@
 
 @inject NavigationManager NavigationManager
 
-<body>
+<Header />
 
-    <Header />
+<section class="bg-dark">
+    <div class="container py-5">
+        <div class="row index-row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="fw-bold">Projects</h2>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
+            <div class="col mb-4">
+                <div>
+                    <a href="https://github.com/F3T1W/VFXperience/archive/refs/heads/master.zip"><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/vfx.jpg" style="height: 250px;"></a>
+                    <div class="py-4">
+                        <span class="badge bg-primary mb-2">UE5</span>
+                        <h4 class="fw-bold">VFXperience</h4>
+                        <p class="text-muted">
+                            Niagara/UE5 learning project based on tutorials.<br /> 
+                                
+                            Project contains:<br />
 
-    <section class="bg-dark">
-        <div class="container py-5">
-            <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h2 class="fw-bold">Projects</h2>
+                            * Clean, documentated Niagara system.<br />
+                            * Personalized particle systems.<br />
+                            * Micro exposition :3<br />
+
+                            <b>Frozen.</b>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col mb-4">
-                    <div>
-                        <a href="https://github.com/F3T1W/VFXperience/archive/refs/heads/master.zip"><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/vfx.jpg" style="height: 250px;"></a>
-                        <div class="py-4">
-                            <span class="badge bg-primary mb-2">UE5</span>
-                            <h4 class="fw-bold">VFXperience</h4>
-                            <p class="text-muted">
-                                Niagara/UE5 learning project based on tutorials.<br /> 
-                                
-                                Project contains:<br />
-
-                                * Clean, documentated Niagara system.<br />
-                                * Personalized particle systems.<br />
-                                * Micro exposition :3<br />
-
-                             <b>Frozen.</b>
-                            </p>
-                        </div>
+            <div class="col mb-4">
+                <div>
+                    <a href="https://github.com/F3T1W/VFXperience/archive/refs/heads/develop.zip"><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/elden.jpg" style="height: 250px;"></a>
+                    <div class="py-4">
+                        <span class="badge bg-primary mb-2">Elden Ring</span>
+                        <h4 class="fw-bold">EldenTracker</h4>
+                        <p class="text-muted">
+                            Simple, standalone, free application created for your convenience,
+                            no more need to worry about the presence of the Internet,
+                            the stability of third-party servers, the possible loss of progress.
+                            <br />
+                            "All things can be conjoined" - Miriel
+                            <br />
+                            <b>Frozen.</b>
+                        </p>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div>
-                        <a href="https://github.com/F3T1W/VFXperience/archive/refs/heads/develop.zip"><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/elden.jpg" style="height: 250px;"></a>
-                        <div class="py-4">
-                            <span class="badge bg-primary mb-2">Elden Ring</span>
-                            <h4 class="fw-bold">EldenTracker</h4>
-                            <p class="text-muted">
-                                Simple, standalone, free application created for your convenience,
-                                no more need to worry about the presence of the Internet,
-                                the stability of third-party servers, the possible loss of progress.
-                                <br />
-                                "All things can be conjoined" - Miriel
-                                <br />
-                                <b>Frozen.</b>
-                            </p>
-                        </div>
+            </div>
+            <div class="col mb-4">
+                <div>
+                    <a href="https://github.com/F3T1W/NeverDice/archive/refs/heads/master.zip"><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/dice.jpg" style="height: 250px;"></a>
+                    <div class="py-4">
+                        <span class="badge bg-primary mb-2">Unity</span>
+                        <h4 class="fw-bold">NeverDice</h4>
+                        <p class="text-muted">
+                            Poker Dice standalone game.<br />
+                            Ported from Witcher 1.<br />
+
+                            <b>In development.</b>
+                        </p>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div>
-                        <a href="https://github.com/F3T1W/NeverDice/archive/refs/heads/master.zip"><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/dice.jpg" style="height: 250px;"></a>
-                        <div class="py-4">
-                            <span class="badge bg-primary mb-2">Unity</span>
-                            <h4 class="fw-bold">NeverDice</h4>
-                            <p class="text-muted">
-                                Poker Dice standalone game.<br />
-                                Ported from Witcher 1.<br />
+            </div>
+            <div class="col mb-4">
+                <div>
+                    <a><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/pernyash.jpg" style="height: 250px;"></a>
+                    <div class="py-4">
+                        <span class="badge bg-primary mb-2">Announcement</span>
+                        <h4 class="fw-bold">Track it up</h4>
+                        <p class="text-muted">Idk what should I put here.<br />
 
-                             <b>In development.</b>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div>
-                        <a><img class="rounded img-fluid shadow w-100 fit-cover" src="img/products/pernyash.jpg" style="height: 250px;"></a>
-                        <div class="py-4">
-                            <span class="badge bg-primary mb-2">Announcement</span>
-                            <h4 class="fw-bold">Track it up</h4>
-                            <p class="text-muted">Idk what should I put here.<br />
-
-                                <b>Announcement.</b>
-                            </p>
-                        </div>
+                            <b>Announcement.</b>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <Footer />
+<Footer />
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bold-and-dark.js"></script>
-</body>
+<script src="assets/js/bold-and-dark.js"></script>

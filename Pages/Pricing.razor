@@ -5,110 +5,105 @@
 
 @inject NavigationManager NavigationManager
 
-<body>
+<Header />
 
-    <Header />
-
-    <section class="bg-dark">
-        <div class="container py-5">
-            <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h2 class="fw-bold">AI Packs</h2>
-                    <p class="text-muted w-lg-50">Elevate your fantasy with tailor-made imagery crafted just for you. <br /> From AI-generated photo collections to your own commisions packs. <br /> We bring your vision to life, one click at a time.</p>
-                </div>
+<section class="bg-dark">
+    <div class="container py-5">
+        <div class="row index-row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="fw-bold">AI Packs</h2>
+                <p class="text-muted w-lg-50">Elevate your fantasy with tailor-made imagery crafted just for you. <br /> From AI-generated photo collections to your own commisions packs. <br /> We bring your vision to life, one click at a time.</p>
             </div>
-            <div class="row g-0 row-cols-1 row-cols-md-2 row-cols-xl-3 d-flex align-items-md-center align-items-xl-center">
-                <div class="col offset-xl-2 mb-4">
-                    <div class="card bg-dark border-dark base-offer-color">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h3 class="fw-bold mb-0">All Packs</h3>
-                                    @* <p>Suscipit</p> *@
-                                    <h4 class="display-4 fw-bold">$10</h4>
-                                </div>
-                            </div>
+        </div>
+        <div class="row g-0 row-cols-1 row-cols-md-2 row-cols-xl-3 d-flex align-items-md-center align-items-xl-center">
+            <div class="col offset-xl-2 mb-4">
+                <div class="card bg-dark border-dark base-offer-color">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between">
                             <div>
-                                <ul class="list-unstyled">
-                                    <li class="d-flex mb-2">
-                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon bs-icon-xs me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
-                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                            </svg>
-                                        </span><span>All previously created packs.</span>
-                                    </li>
-                                    <li class="d-flex mb-2">
-                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon bs-icon-xs me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
-                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                            </svg>
-                                        </span><span>Lifetime access.</span>
-                                    </li>
-                                </ul>
-                            </div><button class="btn btn-primary d-block w-100" type="button">Get Access</button>
+                                <h3 class="fw-bold mb-0">All Packs</h3>
+                                @* <p>Suscipit</p> *@
+                                <h4 class="display-4 fw-bold">$10</h4>
+                            </div>
                         </div>
+                        <div>
+                            <ul class="list-unstyled">
+                                <li class="d-flex mb-2">
+                                    <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon bs-icon-xs me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                        </svg>
+                                    </span><span>All previously created packs.</span>
+                                </li>
+                                <li class="d-flex mb-2">
+                                    <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon bs-icon-xs me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                        </svg>
+                                    </span><span>Lifetime access.</span>
+                                </li>
+                            </ul>
+                        </div><button class="btn btn-primary d-block w-100" type="button">Get Access</button>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div class="card text-white bg-primary">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h3 class="fw-bold text-white mb-0">All Packs + 5 Custom</h3>
-                                    @* <p>Suscipit + donec</p> *@
-                                    <h4 class="display-4 fw-bold text-white">$15</h4>
-                                </div>
-                                <div><span class="badge rounded-pill bg-primary text-uppercase bg-semi-white">Best Value</span></div>
-                            </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between">
                             <div>
-                                <ul class="list-unstyled">
-                                    <li class="d-flex mb-2">
-                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
-                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                            </svg>
-                                        </span><span>All previously created packs.</span>
-                                    </li>
-                                    <li class="d-flex mb-2">
-                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
-                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                            </svg>
-                                        </span><span>Lifetime access.</span>
-                                    </li>
-                                    <li class="d-flex mb-2">
-                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
-                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                            </svg>
-                                        </span><span>Absolutely not filtered.</span>
-                                    </li>
-                                    <li class="d-flex mb-2">
-                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
-                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                            </svg>
-                                        </span><span>Up to 3 edits.</span>
-                                    </li>
-                                    <li class="d-flex mb-2">
-                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
-                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
-                                            </svg>
-                                        </span><span>Working with your facial material.</span>
-                                    </li>
-                                </ul>
-                            </div><button class="btn btn-primary d-block w-100 bg-semi-white" type="button">Fantasy ➜ Reality</button>
+                                <h3 class="fw-bold text-white mb-0">All Packs + 5 Custom</h3>
+                                @* <p>Suscipit + donec</p> *@
+                                <h4 class="display-4 fw-bold text-white">$15</h4>
+                            </div>
+                            <div><span class="badge rounded-pill bg-primary text-uppercase bg-semi-white">Best Value</span></div>
                         </div>
+                        <div>
+                            <ul class="list-unstyled">
+                                <li class="d-flex mb-2">
+                                    <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                        </svg>
+                                    </span><span>All previously created packs.</span>
+                                </li>
+                                <li class="d-flex mb-2">
+                                    <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                        </svg>
+                                    </span><span>Lifetime access.</span>
+                                </li>
+                                <li class="d-flex mb-2">
+                                    <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                        </svg>
+                                    </span><span>Absolutely not filtered.</span>
+                                </li>
+                                <li class="d-flex mb-2">
+                                    <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                        </svg>
+                                    </span><span>Up to 3 edits.</span>
+                                </li>
+                                <li class="d-flex mb-2">
+                                    <span class="bs-icon-xs bs-icon-rounded bs-icon-semi-white bs-icon bs-icon-xs me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                        </svg>
+                                    </span><span>Working with your facial material.</span>
+                                </li>
+                            </ul>
+                        </div><button class="btn btn-primary d-block w-100 bg-semi-white" type="button">Fantasy ➜ Reality</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <Footer />
+<Footer />
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bold-and-dark.js"></script>
-</body>
+<script src="assets/js/bold-and-dark.js"></script>

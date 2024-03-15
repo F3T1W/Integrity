@@ -4,6 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-Integrity-84ecfe11-aa7e-4ad7-9158-c9ebae59fc07</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.15" />
+  </ItemGroup>
 
 </Project>

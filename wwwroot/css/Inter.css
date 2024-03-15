@@ -328,3 +328,19 @@
 .base-offer-color {
 	background-color: #240A34 !important
 }
+
+.index-row {
+	padding-top: 7rem !important
+}
+
+.header-ul {
+	text-align: center;
+}
+
+.header-div-ul {
+	text-align: center;
+}
+
+.navbar-custom {
+	--bs-navbar-padding-y: 0 !important;
+}

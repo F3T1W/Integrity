@@ -1,5 +1,8 @@
 ﻿@page "/Pricing"
+@attribute [Authorize(Roles = "Administrator,User")]
+
 @namespace Integrity.Pages
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Integrity.Shared
 

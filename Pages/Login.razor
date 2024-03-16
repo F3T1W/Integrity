@@ -1,9 +1,16 @@
 ﻿@page "/Login"
+
 @namespace Integrity.Pages
+
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Integrity.Authentication
 @using Integrity.Shared
 
+@inject IJSRuntime JS
 @inject NavigationManager NavigationManager
+@inject UserAccountService UserAccountService
+@inject AuthenticationStateProvider AuthStateProvider
 
 <Header />
 
@@ -25,9 +32,9 @@
                             </svg>
                         </div>
                         <form method="post">
-                            <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                            <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">Log in</button></div>
+                            <div class="mb-3"><input @bind="model.UserName" class="form-control" type="email" name="email" placeholder="Email"></div>
+                            <div class="mb-3"><input @bind="model.Password" class="form-control" type="password" name="password" placeholder="Password"></div>
+                            <div class="mb-3"><button @onclick="Authenticate" class="btn btn-primary shadow d-block w-100" type="submit">Log in</button></div>
                             <p class="text-muted">Forgot your password?</p>
                             <p class="text-muted">Don't have an account yet?&nbsp;<a class="nav-link" href="/Register">Register</a></p>
                         </form>

@@ -5,7 +5,6 @@ namespace Integrity.Pages;
 
 public partial class Contacts
 {
-    private bool isEmailSent = false;
     private string Name { get; set; } = "";
     private string Email { get; set; } = "";
     private string Message { get; set; } = "";
@@ -25,8 +24,6 @@ public partial class Contacts
                                             Message);
 
         await client.SendMailAsync(mailMessage);
-
-        isEmailSent = true;
 
         ResetValues();
     }

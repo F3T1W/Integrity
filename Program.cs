@@ -1,7 +1,13 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
+using Integrity.Data;
+using Integrity.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("IntegrityContextConnection") ?? throw new InvalidOperationException("Connection string 'IntegrityContextConnection' not found.");
+
+builder.Services.AddDbContext<IntegrityContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IntegrityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IntegrityContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
@@ -18,6 +24,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapRazorPages();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

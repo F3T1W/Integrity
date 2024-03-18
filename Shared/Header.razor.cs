@@ -2,7 +2,7 @@
 
 public partial class Header
 {
-    private string currentUri;
+    private string? currentUri;
 
     protected override void OnInitialized()
     {

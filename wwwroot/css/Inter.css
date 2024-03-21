@@ -340,3 +340,7 @@
 .header-div-ul {
 	text-align: center;
 }
+
+p a {
+	text-decoration: none !important
+}

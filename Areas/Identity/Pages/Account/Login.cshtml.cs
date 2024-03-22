@@ -21,11 +21,13 @@ namespace Integrity.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IntegrityUser> _signInManager;
+        private readonly UserManager<IntegrityUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IntegrityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IntegrityUser> signInManager, UserManager<IntegrityUser> userManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _logger = logger;
         }
 
@@ -110,6 +112,20 @@ namespace Integrity.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByEmailAsync(Input.Email);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Page();
+                }
+
+                if (!user.EmailConfirmed)
+                {
+                    ModelState.AddModelError(string.Empty, "Please confirm your email before logging in.");
+                    return Page();
+                }
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);

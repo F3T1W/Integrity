@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Net.Mail;
+using System.Net;
 
 namespace Integrity.Areas.Identity.Pages.Account
 {
@@ -71,15 +73,36 @@ namespace Integrity.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                await SendMail(callbackUrl);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
 
             return Page();
+        }
+
+        private async Task SendMail(string callbackUrl)
+        {
+            try
+            {
+                using MailMessage message = new();
+                message.From = new MailAddress("particular0010abyss@gmail.com");
+                message.To.Add(new MailAddress(Input.Email));
+                message.Subject = "Welcome to Integrity, again ;3";
+                message.IsBodyHtml = true;
+                message.Body = $"You can change your account password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
+
+                using SmtpClient smtp = new("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.Credentials = new NetworkCredential("particular0010abyss@gmail.com", "lgcc rsbc rbup yinm");
+                await smtp.SendMailAsync(message);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or log it
+                Console.WriteLine($"Error sending email: {ex.Message}");
+                throw;
+            }
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿@page "/Login"
 @model LoginModel
 
-<section class="bg-dark">
+<section class="bg-dark py-5">
     <div class="container py-5">
-        <div class="col-md-8 col-xl-6 text-center mx-auto" style="padding-top:5rem; padding-bottom:1rem;">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
             <p class="fw-bold text-success mb-2">Sign In</p>
             <h2 class="fw-bold">Welcome</h2>
         </div>
@@ -17,7 +17,7 @@
                             </svg>
                         </div>
                         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert" style="padding-right: 2rem;"></div>
-                        <form id="account" method="post" class="col-6">
+                        <form id="account" method="post" class="col-9">
                             <hr />
                             <div class="mb-3">
                                 <label asp-for="Input.Email" class="form-label">Email</label>

@@ -348,3 +348,7 @@ p a {
 .smaller-pricing-card {
 	background-color: #2d2c38 !important
 }
+
+.mobile-index-padding {
+	padding-bottom: 4rem !important
+}

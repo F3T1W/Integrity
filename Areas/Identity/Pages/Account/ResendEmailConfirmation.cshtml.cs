@@ -24,9 +24,11 @@ namespace Integrity.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IntegrityUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _configuration;
 
-        public ResendEmailConfirmationModel(UserManager<IntegrityUser> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(IConfiguration configuration, UserManager<IntegrityUser> userManager, IEmailSender emailSender)
         {
+            _configuration = configuration;
             _userManager = userManager;
             _emailSender = emailSender;
         }
@@ -74,11 +76,14 @@ namespace Integrity.Areas.Identity.Pages.Account
             var userId = await _userManager.GetUserIdAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
             var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
                 values: new { userId = userId, code = code },
-                protocol: Request.Scheme);
+                protocol: Request.Scheme,
+                host: _configuration["DevTunnelSettings:CallbackUrl"]);
+
             await SendMail(callbackUrl);
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
@@ -92,7 +97,7 @@ namespace Integrity.Areas.Identity.Pages.Account
                 using MailMessage message = new();
                 message.From = new MailAddress("particular0010abyss@gmail.com");
                 message.To.Add(new MailAddress(Input.Email));
-                message.Subject = "Welcome to Integrity, again ;3";
+                message.Subject = "Welcome to Integrity ;3";
                 message.IsBodyHtml = true;
                 message.Body = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
 

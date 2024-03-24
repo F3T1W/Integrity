@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.Net.Mail;
+using System.Net;
 
 namespace Integrity.Areas.Identity.Pages.Account
 {
@@ -30,14 +32,17 @@ namespace Integrity.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IntegrityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _configuration;
 
         public RegisterModel(
+            IConfiguration configuration,
             UserManager<IntegrityUser> userManager,
             IUserStore<IntegrityUser> userStore,
             SignInManager<IntegrityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
+            _configuration = configuration;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
@@ -126,14 +131,15 @@ namespace Integrity.Areas.Identity.Pages.Account
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                        values: new { userId = userId, code = code },
+                        protocol: Request.Scheme,
+                        host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await SendMail(callbackUrl);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -153,6 +159,30 @@ namespace Integrity.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private async Task SendMail(string callbackUrl)
+        {
+            try
+            {
+                using MailMessage message = new();
+                message.From = new MailAddress("particular0010abyss@gmail.com");
+                message.To.Add(new MailAddress(Input.Email));
+                message.Subject = "Welcome to Integrity ;3";
+                message.IsBodyHtml = true;
+                message.Body = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
+
+                using SmtpClient smtp = new("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.Credentials = new NetworkCredential("particular0010abyss@gmail.com", "lgcc rsbc rbup yinm");
+                await smtp.SendMailAsync(message);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or log it
+                Console.WriteLine($"Error sending email: {ex.Message}");
+                throw;
+            }
         }
 
         private IntegrityUser CreateUser()

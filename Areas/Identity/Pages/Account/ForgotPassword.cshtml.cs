@@ -21,11 +21,13 @@ namespace Integrity.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
+        private readonly IConfiguration _configuration;
         private readonly UserManager<IntegrityUser> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<IntegrityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(IConfiguration configuration, UserManager<IntegrityUser> userManager, IEmailSender emailSender)
         {
+            _configuration = configuration;
             _userManager = userManager;
             _emailSender = emailSender;
         }
@@ -63,15 +65,15 @@ namespace Integrity.Areas.Identity.Pages.Account
                     return RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
                 var callbackUrl = Url.Page(
                     "/Account/ResetPassword",
                     pageHandler: null,
                     values: new { area = "Identity", code },
-                    protocol: Request.Scheme);
+                    protocol: Request.Scheme,
+                    host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
                 await SendMail(callbackUrl);
 

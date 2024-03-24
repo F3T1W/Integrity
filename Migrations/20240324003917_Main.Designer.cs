@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Integrity.Migrations
 {
     [DbContext(typeof(IntegrityContext))]
-    [Migration("20240318020002_Main Migration")]
-    partial class MainMigration
+    [Migration("20240324003917_Main")]
+    partial class Main
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,29 +1,25 @@
 ﻿using System.Net.Mail;
 using System.Net;
+using Integrity.Services;
 
 namespace Integrity.Pages;
 
 public partial class Contacts
 {
+    private readonly EmailSender _emailSender;
+
     private string Name { get; set; } = "";
     private string Email { get; set; } = "";
     private string Message { get; set; } = "";
 
-    public async Task SendEmailAsync()
+    public Contacts()
     {
-        var client = new SmtpClient("smtp.gmail.com", 587)
-        {
-            EnableSsl = true,
-            UseDefaultCredentials = false,
-            Credentials = new NetworkCredential("particular0010abyss@gmail.com", "lgcc rsbc rbup yinm")
-        };
+        _emailSender = new EmailSender(Configuration);
+    }
 
-        var mailMessage = new MailMessage(from: "particular00100abyss@gmail.com",
-                                            to: "particular0010abyss@gmail.com",
-                                            Name,
-                                            Message);
-
-        await client.SendMailAsync(mailMessage);
+    public void SendEmailAsync()
+    {
+        _emailSender.SendEmail(Name, Message);
 
         ResetValues();
     }

@@ -2,27 +2,24 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Integrity.Areas.Identity.Data;
+using Integrity.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Net.Mail;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
-using Integrity.Services;
+using System.Net.Mail;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace Integrity.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
-        private EmailSender _emailSender;
+        private readonly EmailSender _emailSender;
 
         private readonly IConfiguration _configuration;
         private readonly UserManager<IntegrityUser> _userManager;
@@ -32,7 +29,7 @@ namespace Integrity.Areas.Identity.Pages.Account
             _configuration = configuration;
             _userManager = userManager;
 
-            _emailSender = new EmailSender();
+            _emailSender = new EmailSender(configuration);
         }
 
         /// <summary>
@@ -78,36 +75,12 @@ namespace Integrity.Areas.Identity.Pages.Account
                     protocol: Request.Scheme,
                     host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-                _emailSender.SendEmailAsync(Input.Email, "Welcome to Integrity, again :3", "You can change your password", callbackUrl);
+                _emailSender.SendEmail(Input.Email, "Welcome to Integrity, again :3", "You can change your password", callbackUrl);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
 
             return Page();
-        }
-
-        private async Task SendMail(string callbackUrl)
-        {
-            try
-            {
-                using MailMessage message = new();
-                message.From = new MailAddress("particular0010abyss@gmail.com");
-                message.To.Add(new MailAddress(Input.Email));
-                message.Subject = "Welcome to Integrity, again ;3";
-                message.IsBodyHtml = true;
-                message.Body = $"You can change your account password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
-
-                using SmtpClient smtp = new("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.Credentials = new NetworkCredential("particular0010abyss@gmail.com", "lgcc rsbc rbup yinm");
-                await smtp.SendMailAsync(message);
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception or log it
-                Console.WriteLine($"Error sending email: {ex.Message}");
-                throw;
-            }
         }
     }
 }

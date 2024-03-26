@@ -2,28 +2,22 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Integrity.Areas.Identity.Data;
+using Integrity.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Net.Mail;
-using System.Net;
-using Integrity.Services;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Integrity.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
-        private EmailSender _emailSender;
+        private readonly EmailSender _emailSender;
 
         private readonly UserManager<IntegrityUser> _userManager;
         private readonly IConfiguration _configuration;
@@ -33,7 +27,7 @@ namespace Integrity.Areas.Identity.Pages.Account
             _configuration = configuration;
             _userManager = userManager;
 
-            _emailSender = new EmailSender();
+            _emailSender = new EmailSender(configuration);
         }
 
         /// <summary>
@@ -87,7 +81,7 @@ namespace Integrity.Areas.Identity.Pages.Account
                 protocol: Request.Scheme,
                 host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-            _emailSender.SendEmailAsync(Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
+            _emailSender.SendEmail(Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return Page();

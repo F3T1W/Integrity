@@ -10,11 +10,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         var connectionString = builder.Configuration.GetConnectionString("IntegrityContextConnection") ?? throw new InvalidOperationException("Connection string 'IntegrityContextConnection' not found.");
-var builder = WebApplication.CreateBuilder(args);
-
-Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoAPI:APIKey"]);
-
-var connectionString = builder.Configuration.GetConnectionString("IntegrityContextConnection") ?? throw new InvalidOperationException("Connection string 'IntegrityContextConnection' not found.");
+        Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoAPI:APIKey"]);
 
         builder.Services.AddDbContext<IntegrityContext>(options => options.UseSqlServer(connectionString));
 

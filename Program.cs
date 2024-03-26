@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Integrity.Data;
 using Integrity.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using sib_api_v3_sdk.Client;
 
 public class Program
 {
@@ -9,6 +10,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         var connectionString = builder.Configuration.GetConnectionString("IntegrityContextConnection") ?? throw new InvalidOperationException("Connection string 'IntegrityContextConnection' not found.");
+        Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoAPI:APIKey"]);
 
         builder.Services.AddDbContext<IntegrityContext>(options => options.UseSqlServer(connectionString));
 
@@ -66,8 +68,9 @@ public class Program
 
         //    var x = await userManager.FindByEmailAsync(email);
 
+        //    if (x is not null)
         //        await userManager.AddToRoleAsync(x, "Admin");
-            
+
         //}
 
         app.Run();

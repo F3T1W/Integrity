@@ -65,29 +65,5 @@ namespace Integrity.Areas.Identity.Pages.Account
 
             return Page();
         }
-
-        private async Task SendMail(string email)
-        {
-            try
-            {
-                using MailMessage message = new();
-                message.From = new MailAddress("particular0010abyss@gmail.com");
-                message.To.Add(new MailAddress(email));
-                message.Subject = "Welcome to Integrity";
-                message.IsBodyHtml = true;
-                message.Body = $"Thank you for your energy: <a id=\"confirm-link\" href=\"{EmailConfirmationUrl}\">Click here to confirm your account</a>";
-
-                using SmtpClient smtp = new("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.Credentials = new NetworkCredential("particular0010abyss@gmail.com", "lgcc rsbc rbup yinm");
-                await smtp.SendMailAsync(message);
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception or log it
-                Console.WriteLine($"Error sending email: {ex.Message}");
-                throw;
-            }
-        }
     }
 }

@@ -16,7 +16,7 @@ namespace Integrity.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private EmailSender _emailSender;
+        private readonly EmailSender _emailSender;
 
         private readonly SignInManager<IntegrityUser> _signInManager;
         private readonly UserManager<IntegrityUser> _userManager;
@@ -39,7 +39,7 @@ namespace Integrity.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
 
-            _emailSender = new EmailSender();
+            _emailSender = new EmailSender(configuration);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Integrity.Areas.Identity.Pages.Account
                         protocol: Request.Scheme,
                         host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-                    _emailSender.SendEmailAsync(Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
+                    _emailSender.SendEmail(Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

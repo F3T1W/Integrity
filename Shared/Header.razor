@@ -1,4 +1,6 @@
-﻿@inject NavigationManager NavigationManager
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
+@inject NavigationManager NavigationManager
 
 <nav class="navbar navbar-dark navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
     <div class="container">
@@ -9,11 +11,27 @@
             <ul class="navbar-nav mx-auto header-ul">
                 <li class="nav-item"><a class="nav-link @(currentUri!.EndsWith("/") ? "active" : "")" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link @(currentUri.EndsWith("/Projects") ? "active" : "")" href="/Projects">Projects</a></li>
+                <CascadingAuthenticationState>
+                    <AuthorizeView Roles="Admin">
+                        <Authorized>
                 <li class="nav-item"><a class="nav-link @(currentUri.EndsWith("/Fit") ? "active" : "")" href="/Fit">Fit</a></li>
+                        </Authorized>
+                    </AuthorizeView>
+                </CascadingAuthenticationState>
                 @* <li class="nav-item"><a class="nav-link @(currentUri.EndsWith("/Goddass") ? "active" : "")" href="/Goddass">Goddass</a></li> *@
                 <li class="nav-item"><a class="nav-link @(currentUri.EndsWith("/Pricing") ? "active" : "")" href="/Pricing">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link @(currentUri.EndsWith("/Contacts") ? "active" : "")" href="/Contacts">Contacts</a></li>
-            </ul><a class="btn btn-primary shadow" role="button" href="/Login">Sign In</a>
+            </ul>
+            <CascadingAuthenticationState>
+                <AuthorizeView Roles="Admin, User">
+                    <Authorized>
+                        <a class="btn btn-primary shadow" role="button" href="/Logout">Sign Out</a>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a class="btn btn-primary shadow" role="button" href="/Login">Sign In</a>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </CascadingAuthenticationState>
         </div>
     </div>
 </nav>

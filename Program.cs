@@ -42,41 +42,33 @@ public class Program
         app.MapBlazorHub();
         app.MapFallbackToPage("/_Host");
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var roleManager =
-                scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        //using (var scope = app.Services.CreateScope())
+        //{
+        //    var roleManager =
+        //        scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            var roles = new[] { "Admin", "User", "Guest" };
+        //    var roles = new[] { "Admin", "User" };
 
-            foreach (var role in roles)
-            {
-                if (!await roleManager.RoleExistsAsync(role))
-                    await roleManager.CreateAsync(new IdentityRole(role));
-            }
-        }
+        //    foreach (var role in roles)
+        //    {
+        //        if (!await roleManager.RoleExistsAsync(role))
+        //            await roleManager.CreateAsync(new IdentityRole(role));
+        //    }
+        //}
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var userManager =
-                scope.ServiceProvider.GetRequiredService<UserManager<IntegrityUser>>();
+        //using (var scope = app.Services.CreateScope())
+        //{
+        //    var userManager =
+        //        scope.ServiceProvider.GetRequiredService<UserManager<IntegrityUser>>();
 
-            string email = "particular0010abyss@gmail.com";
-            string password = "Jija123!";
+        //    string email = "particular0010abyss@gmail.com";
+        //    string password = "Cbkf[23rekfrf!";
 
-            if (await userManager.FindByEmailAsync(email) == null)
-            {
-                var user = new IntegrityUser
-                {
-                    UserName = email,
-                    Email = email
-                };
+        //    var x = await userManager.FindByEmailAsync(email);
 
-                await userManager.CreateAsync(user, password);
-
-                await userManager.AddToRoleAsync(user, "Admin");
-            }
-        }
+        //        await userManager.AddToRoleAsync(x, "Admin");
+            
+        //}
 
         app.Run();
     }

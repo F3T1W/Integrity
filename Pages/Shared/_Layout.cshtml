@@ -41,7 +41,7 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Projects">Projects</a></li>
-                    @if (User.IsInRole("Administrator"))
+                    @if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item"><a class="nav-link" href="/Fit">Fit</a></li>
                     }
@@ -50,11 +50,9 @@
                     <li class="nav-item"><a class="nav-link" href="/Pricing">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Contacts">Contacts</a></li>
                 </ul>
-                @if (User.Identity.IsAuthenticated)
+                @if (User.IsInRole("User") || User.IsInRole("Admin"))
                 {
-                    <form id="logoutForm" method="post" action="/Logout">
-                        <button type="submit" class="btn btn-primary shadow">Sign Out</button>
-                    </form>
+                    <a class="btn btn-primary shadow" role="button" href="/Login">Sign Out</a>
                 }
                 else
                 {

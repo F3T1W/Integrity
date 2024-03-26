@@ -6,7 +6,7 @@ using sib_api_v3_sdk.Client;
 
 public class Program
 {
-    private static async Task Main(string[] args)
+    private static void /*async Task*/ Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
         var connectionString = builder.Configuration.GetConnectionString("IntegrityContextConnection") ?? throw new InvalidOperationException("Connection string 'IntegrityContextConnection' not found.");

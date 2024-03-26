@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using sib_api_v3_sdk.Api;
+﻿using sib_api_v3_sdk.Api;
 using sib_api_v3_sdk.Model;
-using System.Diagnostics;
 using System.Text.Encodings.Web;
 
 namespace Integrity.Services;
@@ -14,16 +12,18 @@ public class EmailSender
 
         string SenderName = "F3T1W";
         string SenderEmail = "particular0010abyss@gmail.com";
-        SendSmtpEmailSender Email = new SendSmtpEmailSender(SenderName, SenderEmail);
+        SendSmtpEmailSender Email = new(SenderName, SenderEmail);
 
         string ToEmail = receiverEmail;
-        SendSmtpEmailTo smtpEmailTo = new SendSmtpEmailTo(ToEmail);
-        List<SendSmtpEmailTo> To = new List<SendSmtpEmailTo>();
-        To.Add(smtpEmailTo);
+        SendSmtpEmailTo smtpEmailTo = new(ToEmail);
+        List<SendSmtpEmailTo> To = new()
+        {
+            smtpEmailTo
+        };
 
         string HtmlContent = $"{text} by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
-        string TextContent = null;
-        
+        string? TextContent = null;
+
         try
         {
             var sendSmtpEmail = new SendSmtpEmail(Email, To, null, null, HtmlContent, TextContent, subject);

@@ -16,21 +16,24 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Net.Mail;
 using System.Net;
+using Integrity.Services;
 
 namespace Integrity.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
+        private EmailSender _emailSender;
+
         private readonly UserManager<IntegrityUser> _userManager;
-        private readonly IEmailSender _emailSender;
         private readonly IConfiguration _configuration;
 
-        public ResendEmailConfirmationModel(IConfiguration configuration, UserManager<IntegrityUser> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(IConfiguration configuration, UserManager<IntegrityUser> userManager)
         {
             _configuration = configuration;
             _userManager = userManager;
-            _emailSender = emailSender;
+
+            _emailSender = new EmailSender();
         }
 
         /// <summary>
@@ -84,34 +87,10 @@ namespace Integrity.Areas.Identity.Pages.Account
                 protocol: Request.Scheme,
                 host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-            await SendMail(callbackUrl);
+            _emailSender.SendEmailAsync(Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return Page();
-        }
-
-        private async Task SendMail(string callbackUrl)
-        {
-            try
-            {
-                using MailMessage message = new();
-                message.From = new MailAddress("particular0010abyss@gmail.com");
-                message.To.Add(new MailAddress(Input.Email));
-                message.Subject = "Welcome to Integrity ;3";
-                message.IsBodyHtml = true;
-                message.Body = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
-
-                using SmtpClient smtp = new("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.Credentials = new NetworkCredential("particular0010abyss@gmail.com", "lgcc rsbc rbup yinm");
-                await smtp.SendMailAsync(message);
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception or log it
-                Console.WriteLine($"Error sending email: {ex.Message}");
-                throw;
-            }
         }
     }
 }

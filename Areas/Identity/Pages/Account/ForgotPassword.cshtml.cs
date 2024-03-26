@@ -16,20 +16,23 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Net.Mail;
 using System.Net;
+using Integrity.Services;
 
 namespace Integrity.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
+        private EmailSender _emailSender;
+
         private readonly IConfiguration _configuration;
         private readonly UserManager<IntegrityUser> _userManager;
-        private readonly IEmailSender _emailSender;
 
         public ForgotPasswordModel(IConfiguration configuration, UserManager<IntegrityUser> userManager, IEmailSender emailSender)
         {
             _configuration = configuration;
             _userManager = userManager;
-            _emailSender = emailSender;
+
+            _emailSender = new EmailSender();
         }
 
         /// <summary>
@@ -75,7 +78,7 @@ namespace Integrity.Areas.Identity.Pages.Account
                     protocol: Request.Scheme,
                     host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-                await SendMail(callbackUrl);
+                _emailSender.SendEmailAsync(Input.Email, "Welcome to Integrity, again :3", "You can change your password", callbackUrl);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

@@ -1,8 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Integrity.Data;
 using Integrity.Areas.Identity.Data;
+using sib_api_v3_sdk.Client;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoAPI:APIKey"]);
+
 var connectionString = builder.Configuration.GetConnectionString("IntegrityContextConnection") ?? throw new InvalidOperationException("Connection string 'IntegrityContextConnection' not found.");
 
 builder.Services.AddDbContext<IntegrityContext>(options => options.UseSqlServer(connectionString));

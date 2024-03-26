@@ -68,8 +68,9 @@ public class Program
 
         //    var x = await userManager.FindByEmailAsync(email);
 
+        //    if (x is not null)
         //        await userManager.AddToRoleAsync(x, "Admin");
-            
+
         //}
 
         app.Run();

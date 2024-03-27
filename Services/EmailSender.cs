@@ -1,12 +1,11 @@
 ﻿using sib_api_v3_sdk.Api;
 using sib_api_v3_sdk.Model;
 using System.Text.Encodings.Web;
-
 namespace Integrity.Services;
 
 public class EmailSender
 {
-    public EmailSender(){}
+    public EmailSender() { }
 
     public void SendEmailAsync(IConfiguration configuration, string receiverEmail, string subject, string text, string callbackUrl)
     {
@@ -14,7 +13,7 @@ public class EmailSender
 
         string? SenderName = configuration?["BrevoAPI:SenderName"];
         string? SenderEmail = configuration?["BrevoAPI:SenderEmail"];
-        SendSmtpEmailSender Email = new SendSmtpEmailSender(SenderName, SenderEmail);
+        SendSmtpEmailSender Email = new(SenderName, SenderEmail);
 
         SendSmtpEmailTo smtpEmailTo = new(receiverEmail);
         List<SendSmtpEmailTo> To = new()
@@ -23,7 +22,7 @@ public class EmailSender
         };
 
         string HtmlContent = $"{text} by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
-        string TextContent = null;
+        string? TextContent = null;
 
         try
         {

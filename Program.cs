@@ -3,45 +3,32 @@ using Integrity.Data;
 using Integrity.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using sib_api_v3_sdk.Client;
-
 public class Program
 {
-    private static void /*async Task*/ Main(string[] args)
+    private static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Configuration.AddUserSecrets<Program>();
         var connectionString = builder.Configuration["ConnectionStrings:IntegrityContextConnection"];
         Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoAPI:APIKey"]);
-
         builder.Services.AddDbContext<IntegrityContext>(options => options.UseSqlServer(connectionString));
-
         builder.Services.AddDefaultIdentity<IntegrityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<IntegrityContext>();
-
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
-
         var app = builder.Build();
-
         if (!app.Environment.IsDevelopment())
         {
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
-
         app.UseHttpsRedirection();
-
         app.UseStaticFiles();
-
         app.UseRouting();
-
         app.UseAuthorization();
-
         app.MapControllers();
-
         app.MapRazorPages();
-
         app.MapBlazorHub();
         app.MapFallbackToPage("/_Host");
 

@@ -17,7 +17,7 @@ namespace Integrity.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
-        private readonly EmailSender _emailSender;
+        private EmailSender _emailSender;
 
         private readonly UserManager<IntegrityUser> _userManager;
         private readonly IConfiguration _configuration;
@@ -27,7 +27,7 @@ namespace Integrity.Areas.Identity.Pages.Account
             _configuration = configuration;
             _userManager = userManager;
 
-            _emailSender = new EmailSender(configuration);
+            _emailSender = new EmailSender();
         }
 
         /// <summary>

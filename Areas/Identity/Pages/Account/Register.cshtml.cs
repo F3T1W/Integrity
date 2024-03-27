@@ -2,32 +2,21 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Integrity.Areas.Identity.Data;
+using Integrity.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using System.Net.Mail;
-using System.Net;
-using Integrity.Services;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Integrity.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private EmailSender _emailSender;
+        private readonly EmailSender _emailSender;
 
         private readonly SignInManager<IntegrityUser> _signInManager;
         private readonly UserManager<IntegrityUser> _userManager;
@@ -50,7 +39,7 @@ namespace Integrity.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
 
-            _emailSender = new EmailSender();
+            _emailSender = new EmailSender(configuration);
         }
 
         /// <summary>
@@ -141,7 +130,7 @@ namespace Integrity.Areas.Identity.Pages.Account
                         values: new { userId = userId, code = code },
                         protocol: Request.Scheme,
                         host: _configuration["DevTunnelSettings:CallbackUrl"]);
-
+                        
                     _emailSender.SendEmailAsync(_configuration, Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)

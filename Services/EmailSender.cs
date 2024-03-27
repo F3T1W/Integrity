@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using sib_api_v3_sdk.Api;
+﻿using sib_api_v3_sdk.Api;
 using sib_api_v3_sdk.Model;
-using System.Diagnostics;
 using System.Text.Encodings.Web;
 
 namespace Integrity.Services;
@@ -18,10 +16,11 @@ public class EmailSender
         string? SenderEmail = configuration?["BrevoAPI:SenderEmail"];
         SendSmtpEmailSender Email = new SendSmtpEmailSender(SenderName, SenderEmail);
 
-        string ToEmail = receiverEmail;
-        SendSmtpEmailTo smtpEmailTo = new SendSmtpEmailTo(ToEmail);
-        List<SendSmtpEmailTo> To = new List<SendSmtpEmailTo>();
-        To.Add(smtpEmailTo);
+        SendSmtpEmailTo smtpEmailTo = new(receiverEmail);
+        List<SendSmtpEmailTo> To = new()
+        {
+            smtpEmailTo
+        };
 
         string HtmlContent = $"{text} by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
         string TextContent = null;

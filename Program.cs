@@ -6,10 +6,11 @@ using sib_api_v3_sdk.Client;
 
 public class Program
 {
-    private static async Task Main(string[] args)
+    private static void /*async Task*/ Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        var connectionString = builder.Configuration.GetConnectionString("IntegrityContextConnection") ?? throw new InvalidOperationException("Connection string 'IntegrityContextConnection' not found.");
+        builder.Configuration.AddUserSecrets<Program>();
+        var connectionString = builder.Configuration["ConnectionStrings:IntegrityContextConnection"];
         Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoAPI:APIKey"]);
 
         builder.Services.AddDbContext<IntegrityContext>(options => options.UseSqlServer(connectionString));

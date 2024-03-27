@@ -17,7 +17,7 @@
 </head>
 
 @{
-    string ButtonText = User.Identity.IsAuthenticated ? "Sign Out" : "Sign In";
+    string ButtonText = User!.Identity!.IsAuthenticated ? "Sign Out" : "Sign In";
 }
 
 <body>
@@ -38,8 +38,6 @@
                     {
                         <li class="nav-item"><a class="nav-link" href="/Fit">Fit</a></li>
                     }
-                    @*
-                    <li class="nav-item"><a class="nav-link" href="/Goddass">Goddass</a></li> *@
                     <li class="nav-item"><a class="nav-link" href="/Pricing">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Contacts">Contacts</a></li>
                 </ul>

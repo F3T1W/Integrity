@@ -14,12 +14,12 @@ public partial class Contacts
 
     public Contacts()
     {
-        _emailSender = new EmailSender(Configuration);
+        _emailSender = new EmailSender();
     }
 
     public void SendEmailAsync()
     {
-        _emailSender.SendEmail(Name, Message);
+        _emailSender.SendEmailToAdmin(Name, Message);
 
         ResetValues();
     }

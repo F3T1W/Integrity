@@ -130,8 +130,8 @@ namespace Integrity.Areas.Identity.Pages.Account
                         values: new { userId = userId, code = code },
                         protocol: Request.Scheme,
                         host: _configuration["DevTunnelSettings:CallbackUrl"]);
-
-                    _emailSender.SendEmail(Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
+                        
+                    _emailSender.SendEmailAsync(_configuration, Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

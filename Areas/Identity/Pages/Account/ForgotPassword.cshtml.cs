@@ -24,7 +24,7 @@ namespace Integrity.Areas.Identity.Pages.Account
         private readonly IConfiguration _configuration;
         private readonly UserManager<IntegrityUser> _userManager;
 
-        public ForgotPasswordModel(IConfiguration configuration, UserManager<IntegrityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(IConfiguration configuration, UserManager<IntegrityUser> userManager)
         {
             _configuration = configuration;
             _userManager = userManager;
@@ -75,7 +75,7 @@ namespace Integrity.Areas.Identity.Pages.Account
                     protocol: Request.Scheme,
                     host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-                _emailSender.SendEmail(Input.Email, "Welcome to Integrity, again :3", "You can change your password", callbackUrl);
+                _emailSender.SendEmailAsync(_configuration, Input.Email, "Welcome to Integrity, again :3", "You can change your password", callbackUrl);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

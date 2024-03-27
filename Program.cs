@@ -45,34 +45,33 @@ public class Program
         app.MapBlazorHub();
         app.MapFallbackToPage("/_Host");
 
-        //using (var scope = app.Services.CreateScope())
-        //{
-        //    var roleManager =
-        //        scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        using (var scope = app.Services.CreateScope())
+        {
+            var roleManager =
+                scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        //    var roles = new[] { "Admin", "User" };
+            var roles = new[] { "Admin", "User" };
 
-        //    foreach (var role in roles)
-        //    {
-        //        if (!await roleManager.RoleExistsAsync(role))
-        //            await roleManager.CreateAsync(new IdentityRole(role));
-        //    }
-        //}
+            foreach (var role in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
+                    await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
 
-        //using (var scope = app.Services.CreateScope())
-        //{
-        //    var userManager =
-        //        scope.ServiceProvider.GetRequiredService<UserManager<IntegrityUser>>();
+        using (var scope = app.Services.CreateScope())
+        {
+            var userManager =
+                scope.ServiceProvider.GetRequiredService<UserManager<IntegrityUser>>();
 
-        //    string email = "particular0010abyss@gmail.com";
-        //    string password = "Cbkf[23rekfrf!";
+            string email = "particular0010abyss@gmail.com";
 
-        //    var x = await userManager.FindByEmailAsync(email);
+            var x = await userManager.FindByEmailAsync(email);
 
-        //    if (x is not null)
-        //        await userManager.AddToRoleAsync(x, "Admin");
+            if (x is not null)
+                await userManager.AddToRoleAsync(x, "Admin");
 
-        //}
+        }
 
         app.Run();
     }

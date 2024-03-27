@@ -87,7 +87,7 @@ namespace Integrity.Areas.Identity.Pages.Account
                 protocol: Request.Scheme,
                 host: _configuration["DevTunnelSettings:CallbackUrl"]);
 
-            _emailSender.SendEmailAsync(Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
+            _emailSender.SendEmailAsync(_configuration, Input.Email, "Welcome to Integrity ;3", "You can confirm your account", callbackUrl);
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return Page();

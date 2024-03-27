@@ -7,6 +7,6 @@
     <WebStackScaffolding_ViewDialogWidth>800</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_DbContextDialogWidth>650,4</WebStackScaffolding_DbContextDialogWidth>
     <WebStackScaffolding_IdentityDialogWidth>650,4</WebStackScaffolding_IdentityDialogWidth>
-    <NameOfLastUsedPublishProfile>C:\Users\parti\source\repos\Integrity\Properties\PublishProfiles\f3t1wlya-001-site1 - FTP.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\parti\source\repos\Integrity\Properties\PublishProfiles\f3t1wlya-001-site1 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

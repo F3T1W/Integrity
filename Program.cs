@@ -8,7 +8,6 @@ public class Program
     private static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        builder.Configuration.AddUserSecrets<Program>();
         var connectionString = builder.Configuration["ConnectionStrings:IntegrityContextConnection"];
         Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoAPI:APIKey"]);
         builder.Services.AddDbContext<IntegrityContext>(options => options.UseSqlServer(connectionString));
